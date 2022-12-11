@@ -9,7 +9,6 @@ MAKEFLAGS += --load-average=$(shell nproc)
 
 # Commands
 DOCKER = docker
-HADOLINT = hadolint -V
 SHELLCHECK = shellcheck
 
 REPO = markcaudill
@@ -33,7 +32,7 @@ image: test  ## Build image
 .PHONY: lint
 lint: Dockerfile  ## Lint Dockerfile
 	@echo "+ $@"
-	$(HADOLINT) $<
+	$(DOCKER) run --rm -i hadolint/hadolint < $<
 
 .PHONY: push
 push: image  ## Push image
