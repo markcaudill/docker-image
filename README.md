@@ -1,9 +1,10 @@
 # docker-image
 
+<!-- Badges -->
 [![CI to Docker Hub](https://github.com/markcaudill/docker-image/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/markcaudill/docker-image/actions/workflows/ci.yml)
 [![Docker Pulls](https://img.shields.io/docker/pulls/markcaudill/image)](https://hub.docker.com/repository/docker/markcaudill/image)
-[![Docker Image Size (tag)](https://img.shields.io/docker/image-size/markcaudill/image/latest?label=latest)](https://hub.docker.com/repository/registry-1.docker.io/markcaudill/image/tags?page=1&ordering=last_updated&name=latest)
-[![Docker Image Size (tag)](https://img.shields.io/docker/image-size/markcaudill/image/latest?label=latest)](https://hub.docker.com/repository/registry-1.docker.io/markcaudill/image/tags?page=1&ordering=last_updated&name=latest)
+[![Docker Image Size](https://img.shields.io/docker/image-size/markcaudill/image/latest?label=latest)](https://hub.docker.com/repository/docker/markcaudill/image/tags?page=1&ordering=last_updated)
+<!-- /Badges -->
 
 ## Description
 
