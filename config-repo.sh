@@ -94,7 +94,7 @@ docker_image_page() {
   local image_name="${1}"; shift
   local url
   url="https:\/\/hub\.docker\.com\/repository\/docker"
-  url+="${url}\/${docker_repo}\/${image_name}"
+  url+="\/${docker_repo}\/${image_name}"
   echo "${url}"
 }
 
