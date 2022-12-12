@@ -63,7 +63,7 @@ USAGE
 #   GitHub workflow name, minus the .yml extension (default: "ci")
 #   Git branch name (default: "main")
 # Outputs:
-#   An escaped string of Markdown
+#   A string of Markdown
 #######################################
 github_workflow_badge() {
   local github_username="${1}"; shift
@@ -72,11 +72,11 @@ github_workflow_badge() {
   local branch="${1:-main}"; shift
   local url
   local badge_url
-  url="https:\/\/github\.com"
-  url+="\/${github_username}\/${github_repo}"
-  url+="\/actions\/workflows\/${workflow_name}.yml"
-  badge_url="${url}\/badge\.svg\?branch=${branch}"
-  echo "\[!\[CI to Docker Hub\](${badge_url})\](${url})"
+  url="https://github.com"
+  url+="/${github_username}/${github_repo}"
+  url+="/actions/workflows/${workflow_name}.yml"
+  badge_url="${url}/badge.svg?branch=${branch}"
+  echo "[![CI to Docker Hub](${badge_url})](${url})"
 }
 
 #######################################
@@ -87,14 +87,14 @@ github_workflow_badge() {
 #   Docker repository name
 #   Image name
 # Outputs:
-#   An escaped string of the Docker image page URL
-#######################################
+#   A string of the Docker image page URL
+######################################
 docker_image_page() {
   local docker_repo="${1}"; shift
   local image_name="${1}"; shift
   local url
-  url="https:\/\/hub\.docker\.com\/repository\/docker"
-  url+="\/${docker_repo}\/${image_name}"
+  url="https://hub.docker.com/repository/docker"
+  url+="/${docker_repo}/${image_name}"
   echo "${url}"
 }
 
@@ -106,14 +106,14 @@ docker_image_page() {
 #   Docker repository name
 #   Image name
 # Outputs:
-#   An escaped string of the Docker image tags page URL
+#   A string of the Docker image tags page URL
 #######################################
 docker_image_tags_page() {
   local docker_repo="${1}"; shift
   local image_name="${1}"; shift
   local url
   url="$(docker_image_page "${docker_repo}" "${image_name}")"
-  url+="\/tags?page=1&ordering=last_updated"
+  url+="/tags?page=1&ordering=last_updated"
   echo "${url}"
 }
 
@@ -125,17 +125,17 @@ docker_image_tags_page() {
 #   Docker repository name
 #   Image name
 # Outputs:
-#   An escaped string of Markdown
+#   A string of Markdown
 #######################################
 docker_pulls_badge() {
   local docker_repo="${1}"; shift
   local image_name="${1}"; shift
   local badge_url
   local url
-  badge_url="https:\/\/img\.shields\.io\/docker\/pulls"
-  badge_url+="\/${docker_repo}\/${image_name}"
+  badge_url="https://img.shields.io/docker/pulls"
+  badge_url+="/${docker_repo}/${image_name}"
   url="$(docker_image_page "${docker_repo}" "${image_name}")"
-  echo "\[\!\[Docker Pulls\](${badge_url})](${url})"
+  echo "[![Docker Pulls](${badge_url})](${url})"
 }
 
 #######################################
@@ -146,18 +146,18 @@ docker_pulls_badge() {
 #   Docker repository name
 #   Image name
 # Outputs:
-#   An escaped string of Markdown
+#   A string of Markdown
 #######################################
 docker_size_badge() {
   local docker_repo="${1}"; shift
   local image_name="${1}"; shift
   local badge_url
   local url
-  badge_url="https:\/\/img\.shields\.io\/docker\/image-size"
-  badge_url+="\/${docker_repo}\/${image_name}"
-  badge_url+="\/latest\?label=latest"
+  badge_url="https://img.shields.io/docker/image-size"
+  badge_url+="/${docker_repo}/${image_name}"
+  badge_url+="/latest?label=latest"
   url="$(docker_image_tags_page "${docker_repo}" "${image_name}")"
-  echo "\[\!\[Docker Image Size\](${badge_url})](${url})"
+  echo "[![Docker Image Size](${badge_url})](${url})"
 }
 
 ##
@@ -188,5 +188,5 @@ badge_contents="<!-- Badges -->\n"
 badge_contents+="$(github_workflow_badge "${GITHUB_USERNAME}" "docker-${IMAGE_NAME}")\n"
 badge_contents+="$(docker_pulls_badge "${DOCKER_REPOSITORY}" "${IMAGE_NAME}")\n"
 badge_contents+="$(docker_size_badge "${DOCKER_REPOSITORY}" "${IMAGE_NAME}")\n"
-badge_contents+="<!-- \/Badges -->"
+badge_contents+="<!-- /Badges -->"
 sed -i "/<!-- Badges -->/,/<!-- \/Badges -->/c${badge_contents}" README.md
