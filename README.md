@@ -10,6 +10,8 @@
 
 Prints `NOP` to the terminal.
 
+To use this repo as a template, clone it then run `config-repo.sh`.
+
 ## Usage
 
 ### Docker
