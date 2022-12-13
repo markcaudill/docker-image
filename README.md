@@ -10,9 +10,12 @@
 
 Prints `NOP` to the terminal.
 
-To use this repo as a template, clone it to "docker-<your_image_name>, then run
+To use this repo as a template, clone it to `docker-<your_image_name>`, then run
 `config-repo.sh`. This template assumes GitHub as the VCS, Docker Hub as the
 image registry, and `latest` as the primary image tag.
+
+In order for the workflow to be able to push to Docker Hub, ensure you setup
+the repository secrets `DOCKER_HUB_USERNAME` and `DOCKER_HUB_ACCESS_TOKEN`.
 
 ## Usage
 
